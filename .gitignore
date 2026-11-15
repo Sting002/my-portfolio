@@ -4,3 +4,7 @@ dist
 .env.local
 .DS_Store
 *.log
+.vscode/
+# Files excluded from Git
+CONTENT-CHECKLIST.md
+README.md
