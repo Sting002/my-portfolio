@@ -1,0 +1,20 @@
+.notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-end: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--border-accent);
+  border-radius: var(--radius-md);
+  background: rgb(139 92 246 / 0.08);
+  color: var(--accent-strong);
+  font-size: var(--fs-sm);
+
+  & p {
+    color: inherit;
+  }
+
+  & svg {
+    flex-shrink: 0;
+  }
+}

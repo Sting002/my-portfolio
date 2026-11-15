@@ -1,0 +1,44 @@
+.group + .group {
+  margin-block-start: var(--space-7);
+}
+
+.groupTitle {
+  margin-block-end: var(--space-4);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* auto-fit keeps the grid tidy for any number of entries */
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+
+  & > li {
+    display: grid; /* cards stretch to equal heights */
+  }
+}
+
+.strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.certImage {
+  inline-size: 100%;
+  max-block-size: 10rem;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.empty {
+  padding: var(--space-7);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}

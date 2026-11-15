@@ -1,0 +1,123 @@
+.btn {
+  --btn-h: 2.75rem;
+  --btn-px: var(--space-5);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  block-size: var(--btn-h);
+  padding-inline: var(--btn-px);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    color var(--transition-base);
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+}
+
+/* Icon-only: a perfect circle (class set by Button.jsx when there is no label) */
+.iconOnly {
+  inline-size: var(--btn-h);
+  padding: 0;
+}
+
+/* ---------- Sizes ---------- */
+.sm {
+  --btn-h: 2.25rem;
+  --btn-px: var(--space-4);
+  font-size: var(--fs-xs);
+}
+
+.md {
+  --btn-h: 2.75rem;
+}
+
+.lg {
+  --btn-h: 3.25rem;
+  --btn-px: var(--space-6);
+  font-size: var(--fs-base);
+}
+
+.full {
+  inline-size: 100%;
+}
+
+/* ---------- Primary ---------- */
+/* Gradient starts at violet-600 so white text keeps good contrast */
+.primary {
+  color: #fff;
+  background: linear-gradient(135deg, var(--violet-600), var(--violet-700));
+  box-shadow: var(--shadow-accent);
+
+  /* light sweep on hover */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.22) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 700ms var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      transform: translateX(120%);
+    }
+  }
+}
+
+/* ---------- Secondary ---------- */
+.secondary {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border-strong);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-accent);
+    }
+  }
+}
+
+/* ---------- Ghost ---------- */
+.ghost {
+  color: var(--text-muted);
+  background: transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+  }
+}
+
+/* Comfortable touch targets on touch screens (also applies to icon-only buttons) */
+@media (pointer: coarse) {
+  .sm {
+    --btn-h: 2.75rem;
+  }
+}

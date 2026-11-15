@@ -1,0 +1,10 @@
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: var(--z-progress);
+  block-size: 3px;
+  background: var(--gradient-accent);
+  transform-origin: left;
+  transform: scaleX(0);
+  pointer-events: none;
+}

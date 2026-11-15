@@ -1,0 +1,6 @@
+.wrap {
+  position: fixed;
+  z-index: var(--z-overlay);
+  inset-block-end: calc(var(--space-5) + env(safe-area-inset-bottom, 0px));
+  inset-inline-end: var(--space-5);
+}

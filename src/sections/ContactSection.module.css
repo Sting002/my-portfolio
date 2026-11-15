@@ -1,0 +1,36 @@
+.layout {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+  }
+}
+
+.email {
+  color: var(--text);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-decoration-color: var(--border-accent);
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--transition-base);
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration-color: var(--accent-strong);
+    }
+  }
+
+  @media (pointer: coarse) {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: 44px;
+  }
+}
+
+.social {
+  margin-block-start: var(--space-3);
+}

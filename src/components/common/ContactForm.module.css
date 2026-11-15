@@ -1,0 +1,73 @@
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.row {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* Name and email sit side by side once the card itself is wide enough */
+@container card (min-width: 520px) {
+  .row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.counter {
+  margin-block-start: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: end;
+}
+
+.over {
+  color: var(--danger-text);
+}
+
+/* Off-screen rather than display:none, because some bots skip display:none fields */
+.honeypot {
+  position: absolute;
+  inset-inline-start: -9999px;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.feedback {
+  flex: 1 1 14rem;
+  min-block-size: 1.5rem;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+
+  & svg {
+    flex-shrink: 0;
+    margin-block-start: 0.15rem;
+  }
+
+  & a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.success {
+  color: var(--success-text);
+}
+
+.failure {
+  color: var(--danger-text);
+}

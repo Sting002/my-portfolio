@@ -1,0 +1,63 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.label {
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+/* Tint the label when its field has an error (uses :has; harmless where unsupported) */
+.field:has(.invalid) .label {
+  color: var(--danger-text);
+}
+
+.control {
+  inline-size: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background-color var(--transition-base);
+
+  &::placeholder {
+    color: var(--text-faint);
+  }
+
+  &:hover {
+    border-color: var(--border-accent);
+  }
+
+  /* A transparent outline stays visible in Windows High Contrast mode */
+  &:focus-visible {
+    border-color: var(--accent-strong);
+    box-shadow: 0 0 0 3px rgb(139 92 246 / 0.25);
+    outline: 2px solid transparent;
+  }
+}
+
+.textarea {
+  min-block-size: 9rem;
+  resize: vertical;
+}
+
+.invalid {
+  border-color: var(--danger);
+
+  &:focus-visible {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgb(248 113 113 / 0.25);
+  }
+}
+
+.error {
+  color: var(--danger-text);
+  font-size: var(--fs-sm);
+}

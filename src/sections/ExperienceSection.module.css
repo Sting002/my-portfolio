@@ -1,0 +1,76 @@
+/* Vertical timeline: a gradient line on the left with a dot per entry */
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  padding-inline-start: var(--space-7);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: 0.5rem;
+    inset-inline-start: 0.65rem;
+    inline-size: 2px;
+    background: linear-gradient(var(--violet-500), transparent);
+    opacity: 0.5;
+  }
+}
+
+.item {
+  position: relative;
+  display: grid; /* lets the card fill the item */
+}
+
+.dot {
+  position: absolute;
+  inset-block-start: 1.9rem;
+  inset-inline-start: calc(0.65rem + 1px - var(--space-7) - 6px);
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 50%;
+  background: var(--accent-strong);
+  box-shadow:
+    0 0 0 4px var(--bg),
+    0 0 0 5px var(--border-accent);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.meta {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.highlights {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-start: var(--space-2);
+
+  & li {
+    position: relative;
+    padding-inline-start: 1.1rem;
+    color: var(--text-muted);
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-start: 0.7em;
+      inset-inline-start: 0;
+      inline-size: 5px;
+      block-size: 5px;
+      border-radius: 50%;
+      background: var(--accent-strong);
+    }
+  }
+}
+
+.empty {
+  padding: var(--space-7);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}

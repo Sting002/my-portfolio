@@ -1,0 +1,79 @@
+/* ==========================================================
+   TYPOGRAPHY
+   ========================================================== */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--lh-snug);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-hero);
+  line-height: var(--lh-tight);
+}
+
+h2 {
+  font-size: var(--fs-3xl);
+  line-height: var(--lh-tight);
+}
+
+h3 {
+  font-size: var(--fs-xl);
+}
+
+h4 {
+  font-size: var(--fs-lg);
+}
+
+p {
+  text-wrap: pretty;
+  color: var(--text-muted);
+}
+
+small {
+  font-size: var(--fs-sm);
+}
+
+code,
+kbd,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+/* ---------- Text helpers ---------- */
+.text-gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* Gradient text can vanish in forced-colours (high contrast) mode, so fall back to plain text */
+@media (forced-colors: active) {
+  .text-gradient {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: currentColor;
+  }
+}

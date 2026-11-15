@@ -1,0 +1,116 @@
+.card {
+  position: relative;
+  min-inline-size: 0;
+  container: card / inline-size; /* lets inner content respond to the card's own width */
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg);
+  box-shadow: var(--card-sheen);
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    box-shadow var(--transition-base);
+
+  /* Spotlight layer that follows the pointer on interactive cards */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), var(--glow-1), transparent 65%);
+    transition: opacity var(--dur-slow) var(--ease-out);
+  }
+}
+
+/* Same padding on every card, regardless of size */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  block-size: 100%;
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  background: rgb(139 92 246 / 0.14);
+  color: var(--accent-strong);
+}
+
+/* Text is anchored to the bottom so cards of any height read consistently */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  justify-content: flex-end;
+}
+
+/* Container query: featured cards get a larger title once they are wide enough */
+@container card (min-width: 420px) {
+  .featured .body h3 {
+    font-size: var(--fs-2xl);
+  }
+}
+
+/* ---------- Variants ---------- */
+.glass {
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+
+  @supports not (backdrop-filter: blur(1px)) {
+    background: var(--surface-solid);
+  }
+}
+
+.accent {
+  border-color: var(--border-accent);
+  background: linear-gradient(145deg, rgb(139 92 246 / 0.2), rgb(139 92 246 / 0.04));
+}
+
+/* ---------- Interaction (hover devices only) ---------- */
+@media (hover: hover) {
+  .interactive:hover {
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-md), var(--card-sheen);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}
+
+/* ---------- Bento spans ---------- */
+/* 1 col on phones, 2 cols from 640px, 4 cols from 1024px (see .bento in responsive.css) */
+@media (min-width: 640px) {
+  .card[data-col='2'],
+  .card[data-col='3'],
+  .card[data-col='4'] {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card[data-col='3'] {
+    grid-column: span 3;
+  }
+
+  .card[data-col='4'] {
+    grid-column: span 4;
+  }
+
+  .card[data-row='2'] {
+    grid-row: span 2;
+  }
+}

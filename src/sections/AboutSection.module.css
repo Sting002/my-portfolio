@@ -1,0 +1,14 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.objective {
+  max-inline-size: 70ch;
+}

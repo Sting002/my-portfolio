@@ -1,0 +1,49 @@
+/* ==========================================================
+   RESPONSIVE HELPERS (mobile-first)
+   Breakpoints (min-width): 640 / 768 / 1024 / 1280 / 1600
+   Component-level layouts should prefer container queries.
+   ========================================================== */
+
+/* Auto-fit grid helper: cards wrap without media queries */
+.grid-auto {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+/* Bento grid base: columns adapt as the viewport grows */
+.bento {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+  /* every row is at least this tall, so cards line up evenly */
+  grid-auto-rows: minmax(var(--bento-row, 11.5rem), auto);
+}
+
+@media (min-width: 640px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .bento {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+/* Touch-friendly targets on coarse pointers */
+@media (pointer: coarse) {
+  button,
+  [role='button'] {
+    min-block-size: 44px;
+  }
+}
+
+/* Large desktops */
+@media (min-width: 1600px) {
+  :root {
+    --container-max: 1360px;
+  }
+}

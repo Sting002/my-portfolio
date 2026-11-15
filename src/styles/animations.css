@@ -1,0 +1,87 @@
+/* ==========================================================
+   SHARED KEYFRAMES & ANIMATION HELPERS
+   (Framer Motion handles entrance/scroll reveals in JS; these
+   cover lightweight CSS-only effects.)
+   ========================================================== */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(52 211 153 / 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgb(52 211 153 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(52 211 153 / 0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up var(--dur-slow) var(--ease-out) both;
+}
+
+/* ---------- Scroll-driven progress (progressive enhancement) ---------- */
+@supports (animation-timeline: scroll()) {
+  @keyframes grow-x {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .scroll-progress-css {
+    transform-origin: left;
+    animation: grow-x auto linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* The scroll progress bar tracks scroll position; it isn't motion, so keep it working */
+  .scroll-progress-css {
+    animation-duration: auto !important;
+  }
+}
